@@ -1,0 +1,21 @@
+version = "1.0"
+
+[metadata]
+author_name = "Phase 2 Researcher"
+author_email = "pash@cline.bot"
+difficulty = "medium"
+category = "software_engineering"
+tags = ["python", "tkinter", "pyinstaller", "macos", "dmg", "desktop-app", "ux", "bug-fix", "real-world-task", "cline", "clinebench"]
+custom_docker_compose = true
+
+[verifier]
+timeout_sec = 600.0
+
+[agent]
+timeout_sec = 1800.0
+
+[environment]
+build_timeout_sec = 300.0
+cpus = 1
+memory_mb = 2048
+storage_mb = 5120

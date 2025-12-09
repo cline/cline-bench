@@ -1,0 +1,47 @@
+FROM ubuntu:24.04
+
+# Prevent interactive prompts
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    git \
+    python3 \
+    python3-pip \
+    python3-venv \
+    postgresql \
+    postgresql-contrib \
+    curl \
+    tmux \
+    asciinema \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install uv for Python package management (Terminal-Bench pattern)
+RUN curl -LsSf https://astral.sh/uv/install.sh | sh
+ENV PATH="/root/.local/bin:$PATH"
+
+# Set working directory
+WORKDIR /app
+
+# Clone repository at broken commit and remove git history
+RUN git clone https://github.com/jamesmparry87/discord.git . && \
+    git checkout eacf1de12ec424ba8f5dc3f84c532e015a688988 && \
+    rm -rf .git
+
+# Install Python dependencies from requirements.txt
+RUN cd Live && pip3 install --break-system-packages -r requirements.txt
+
+# Initialize PostgreSQL for testing
+RUN service postgresql start && \
+    su - postgres -c "psql -c \"CREATE USER testuser WITH PASSWORD 'testpass' CREATEDB;\"" && \
+    su - postgres -c "psql -c \"CREATE DATABASE testdb OWNER testuser;\"" && \
+    service postgresql stop
+
+# Set up environment variables for testing
+ENV DATABASE_URL="postgresql://testuser:testpass@localhost:5432/testdb"
+ENV PYTHONPATH="/app/Live:$PYTHONPATH"
+
+# Create test directory that will be populated by Terminal-Bench
+RUN mkdir -p /tests
+
+CMD ["sh", "-c", "sleep infinity"]
