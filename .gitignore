@@ -1,0 +1,5 @@
+/jobs
+/.venv
+/harbor
+/scratch
+*.DS_Store
