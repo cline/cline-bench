@@ -398,7 +398,7 @@ harbor run -p tasks -a cline-cli -m anthropic:claude-sonnet-4-5:1m --env docker
 
 **Recommendation:** Test single tasks with Docker first, then scale to Daytona for batch evaluation.
 
-### Modifying Cline's Agentic Loop
+### Hill-climbing on cline-bench & Modifying Cline's Agentic Loop
 
 To modify Cline's behavior (system prompt, tools, API shapes like Responses API), you need to:
 
