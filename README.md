@@ -297,7 +297,7 @@ If you use cline-bench in your research:
 
 For issues:
 - Harbor framework: https://github.com/laude-institute/harbor/issues
-- cline-bench tasks: https://github.com/cline/cline or reach out to [@pashmerepat](https://x.com/pashmerepat) on X
+- cline-bench tasks: [https://github.com/cline/cline-bench/issues](https://github.com/cline/cline-bench/issues) or reach out to [@pashmerepat](https://x.com/pashmerepat) on X
 
 ## Understanding Results
 
