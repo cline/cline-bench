@@ -15,7 +15,6 @@ Real-world coding benchmarks derived from actual Cline user sessions. Tasks are 
 ```
 cline-bench-early-access/
 ├── README.md           # This file
-├── harbor/             # Harbor 2.0 framework (with Cline CLI support)
 └── tasks/              # Benchmark tasks
     ├── 01k6kr5hbv8za80v8vnze3at8h-every-plugin-api-migration/
     ├── 01k6n26zm27ffa7qqbcx0prrnw-police-sync-segfault/
@@ -40,13 +39,12 @@ Each task contains:
 uv venv --python 3.13
 source .venv/bin/activate
 
-# 2. Install Harbor in editable mode
-uv pip install -e harbor
+# 2. Install Harbor
+uv tool install harbor
 
 # 3. Verify installation
 python --version  # Should show 3.13.x
-which harbor      # Should show .venv/bin/harbor
-uv pip show harbor  # Should show editable install from harbor/
+which harbor      # Should show harbor binary location
 ```
 
 ## Running Benchmarks
@@ -268,7 +266,7 @@ which harbor  # Verify: should show .venv/bin/harbor
 rm -rf .venv
 uv venv --python 3.13
 source .venv/bin/activate
-uv pip install -e harbor
+uv tool install harbor
 ```
 
 ## Architecture
@@ -280,7 +278,7 @@ cline-bench uses [Harbor](https://harborframework.com), the official successor t
 - **Flexible** - Docker compose for local, cloud for scale
 - **Battle-tested** - Production-ready framework from Laude Institute
 
-Harbor repository: https://github.com/pashpashpash/harbor (fork with Cline CLI support)
+Harbor repository: https://github.com/laude-institute/harbor
 
 ## Citation
 
@@ -404,10 +402,9 @@ harbor run -p tasks -a cline-cli -m anthropic:claude-sonnet-4-5:1m --env docker
 
 To modify Cline's behavior (system prompt, tools, API shapes like Responses API), you need to:
 
-1. Clone the Cline repo inside the container during installation
-2. Check out your changes/branch
-3. Rebuild the CLI manually
-4. Update the path in [harbor/src/harbor/agents/installed/cline/install-cline.sh.j2](harbor/src/harbor/agents/installed/cline/install-cline.sh.j2) to point to `cline/cli/bin/cline` instead of the npm global installation
+1. Create a PR to `cline/cline`
+2. Set environment variable when running cline-cli in harbor with: export CUSTOM_CLINE_BUILD=<link-to-pr-here>
+
 
 **Recommendation:** This process is more involved for early access. Wait for the GA release where this will be streamlined.
 
