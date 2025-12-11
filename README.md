@@ -1,6 +1,6 @@
 # cline-bench early access
 
-Real-world coding benchmarks derived from actual Cline user sessions. Tasks are challenging, verified, and represent genuine engineering problems solved in production.
+Real-world coding benchmarks derived from [actual Cline user sessions](https://cline.bot/blog/cline-bench-initiative). Tasks are challenging, verified, and represent genuine engineering problems solved in production.
 
 ## Prerequisites
 
