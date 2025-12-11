@@ -13,7 +13,7 @@ Real-world coding benchmarks derived from actual Cline user sessions. Tasks are 
 ## Directory Structure
 
 ```
-cline-bench-early-access/
+cline-bench/
 ├── README.md           # This file
 └── tasks/              # Benchmark tasks
     ├── 01k6kr5hbv8za80v8vnze3at8h-every-plugin-api-migration/
