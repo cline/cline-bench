@@ -402,7 +402,7 @@ harbor run -p tasks -a cline-cli -m anthropic:claude-sonnet-4-5:1m --env docker
 
 To modify Cline's behavior (system prompt, tools, API shapes like Responses API), you need to:
 
-1. Create a PR to `cline/cline`
+1. Create a PR to [`cline/cline`](https://github.com/cline/cline)
 2. Set environment variable when running cline-cli in harbor with: export CUSTOM_CLINE_BUILD=<link-to-pr-here>
 
 
