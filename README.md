@@ -407,7 +407,3 @@ To modify Cline's behavior (system prompt, tools, API shapes like Responses API)
 
 
 **Recommendation:** This process is more involved for early access. Wait for the GA release where this will be streamlined.
-
-## License
-
-CONFIDENTIAL EARLY ACCESS RELEASE - DON'T SHARE WITH ANYONE. THANK YOU FOR YOUR ATTENTION.
