@@ -1,6 +1,6 @@
 # Police Neighbourhood Sync - Segmentation Fault
 
-A web scraper for UK police neighbourhood events kept crashing with a segmentation fault. Always at the same place - Manchester neighbourhood MC28. The error trace pointed to Python's `concurrent.futures` threading module. Request succeeded (HTTP 200 OK), then crash. Thread worker segfault. The stack trace screamed "concurrency issue!"
+@AndreasThinks's web scraper for UK police neighbourhood events kept crashing with a segmentation fault. Always at the same place - Manchester neighbourhood MC28. The error trace pointed to Python's `concurrent.futures` threading module. Request succeeded (HTTP 200 OK), then crash. Thread worker segfault. The stack trace screamed "concurrency issue!"
 
 So agents do what seems obvious: add threading locks. Synchronize database access. Protect shared state. Claude 4.5 did this and got it wrong. The bug isn't concurrency - it's data. The Police UK API returned coordinates **missing the 'longitude' key**. When the code tries `coord['longitude']`, Python raises KeyError. In a thread worker, unhandled exceptions cause segmentation faults instead of normal exceptions. The fix? Seven lines of try-except wrapping coordinate access, logging the error, and moving on. No locks needed.
 

@@ -1,6 +1,6 @@
 # V-Edit Workspace Test Fixes
 
-Eight unit tests were failing. Simple problems with clear names: `DeleteLines` had an off-by-one error, `ToplineUpdateAfterEdit` wasn't clamping scroll position, `BuildFromText` couldn't read back segments it just created. The user knew what was broken. They just had to fix it.
+@sergev noticed that eight unit tests were failing. Simple problems with clear names: `DeleteLines` had an off-by-one error, `ToplineUpdateAfterEdit` wasn't clamping scroll position, `BuildFromText` couldn't read back segments it just created. The user knew what was broken. They just had to fix it.
 
 Forty-nine hours later, they committed the fix. Not because the bugs were individually complex, but because v-edit's architecture demanded understanding how text editors actually work at the systems level. The workspace manages text through segments - chunks of a file loaded into memory or stored temporarily. When you insert text, you're not just moving bytes around. You're updating segment boundaries, adjusting file offsets, recalculating line counts, and maintaining a chain of segments where the cursor might be pointing anywhere. Delete three lines and suddenly topline needs recalculating. Load text from a vector and the segment chain has a tail node that cursegm_ points to instead of the data. Navigation fails because you're looking at an empty segment.
 

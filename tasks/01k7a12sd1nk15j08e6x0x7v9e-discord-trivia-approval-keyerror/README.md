@@ -1,6 +1,6 @@
 # Discord Bot Trivia Approval
 
-A Discord bot's automated trivia system stopped working on startup. The logs showed a cryptic error: "KeyError: 0" when creating approval sessions for user 337833732901961729. The bot crashed trying to send the second trivia question for approval. The developer had a hypothesis - they'd recently changed the bot's entry point from `main.py` to `bot_modular.py` for better code organization. Could the state detection be confused?
+@jamesmparry87's Discord bot's automated trivia system stopped working on startup. The logs showed a cryptic error: "KeyError: 0" when creating approval sessions for user 337833732901961729. The bot crashed trying to send the second trivia question for approval. The developer had a hypothesis - they'd recently changed the bot's entry point from `main.py` to `bot_modular.py` for better code organization. Could the state detection be confused?
 
 They spent 15 hours debugging. The hypothesis was wrong. The real issue was buried in database cursor handling. The code accessed `result[0]` assuming PostgreSQL would return tuples, but with `RealDictCursor` enabled, it returns dictionaries instead. Trying to access index 0 on a dictionary throws KeyError. The fix was elegant: try dictionary access first (`result['id']`), fall back to tuple access (`result[0]`) for compatibility. But while debugging, they discovered a second bug - the scheduled trivia code was accessing `question_data.get('question')` when the field was actually named `question_text`. Both bugs had to be fixed for trivia approval to work.
 

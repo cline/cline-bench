@@ -1,6 +1,6 @@
 # Film Archiver: Phantom Window & DMG Polish
 
-A developer just shipped v1.2.0 of their macOS film photography app. They built the DMG, tested the installer, ran the app, closed it... and noticed a small blank window titled "tk" lingering in the upper left corner. Weird. Unprofessional. Not supposed to happen.
+@Wetdogtaste just shipped v1.2.0 of their macOS film photography app. They built the DMG, tested the installer, ran the app, closed it... and noticed a small blank window titled "tk" lingering in the upper left corner. Weird. Unprofessional. Not supposed to happen.
 
 They also realized their DMG installer, while functional, gave users no visual cue about what to do. Just an app icon and an Applications folder. No arrow, no instruction, no "drag me here" guidance. First-time users would be confused.
 

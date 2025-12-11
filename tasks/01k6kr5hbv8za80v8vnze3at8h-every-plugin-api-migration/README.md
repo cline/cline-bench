@@ -1,6 +1,6 @@
 # Migrating to Promise-Based Runtime APIs
 
-A developer just finished implementing a cleaner, simpler API for their plugin framework. The new approach replaced Effect-based dependency injection with straightforward async/await. Documentation was updated. The API was ready.
+@elliotBraem just finished implementing a cleaner, simpler API for their plugin framework. The new approach replaced Effect-based dependency injection with straightforward async/await. Documentation was updated. The API was ready.
 
 But the codebase still used the old patterns everywhere. Three test files (600+ lines) imported from `@effect/vitest`, wrapped everything in `Effect.gen(function* ...)`, and piped through `Effect.provide(runtime)`. The main application destructured `PluginService` and threaded it through yields. The user asked Cline to migrate everything systematically.
 

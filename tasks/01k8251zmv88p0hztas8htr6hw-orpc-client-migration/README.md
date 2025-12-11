@@ -1,6 +1,6 @@
 # Migrating to Type-Safe oRPC Client
 
-A developer working on a NEAR governance application needed to migrate from plain fetch() calls to a type-safe oRPC client. Their codebase had four React components making untyped HTTP requests to `/api/discourse/*` endpoints - string URLs, manual JSON parsing, no compile-time safety. They wanted to set up oRPC infrastructure and migrate everything to typed client calls.
+@jlwaugh was working on a NEAR governance application and needed to migrate from plain fetch() calls to a type-safe oRPC client. Their codebase had four React components making untyped HTTP requests to `/api/discourse/*` endpoints - string URLs, manual JSON parsing, no compile-time safety. They wanted to set up oRPC infrastructure and migrate everything to typed client calls.
 
 The task spans both architecture and implementation. First, create the oRPC plumbing: context types, procedure definitions, a router wrapping the Discourse plugin, an API handler, and a client setup. Then systematically migrate ConnectDiscourse, PublishButton, navigation, and profile - replacing fetch() with typed `client.discourse.*` method calls. Each transformation is simple, but getting all the pieces working together requires understanding Next.js API routes, oRPC's type system, and plugin runtime integration.
 

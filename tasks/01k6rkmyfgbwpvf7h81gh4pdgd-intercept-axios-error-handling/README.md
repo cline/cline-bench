@@ -1,6 +1,6 @@
 # Axios Error Handling in React Query
 
-A Norwegian developer building an HTTP interception library hit a subtle bug. Their axios adapter worked perfectly for direct axios calls - intercept a request, return an error, axios throws the error as expected. But wrap the same code in React Query's async context and everything broke. React Query expected thrown errors but got normal responses. The error handling chain silently failed.
+A Norwegian developer (@klogt-as) building an HTTP interception library hit a subtle bug. Their axios adapter worked perfectly for direct axios calls - intercept a request, return an error, axios throws the error as expected. But wrap the same code in React Query's async context and everything broke. React Query expected thrown errors but got normal responses. The error handling chain silently failed.
 
 The user debugged this over several hours, adding three new tests that exposed the problem: `intercept.reject()` with 404 status wasn't throwing AxiosError objects, just returning error responses. In React Query's promise-based queries, errors must be thrown to trigger error boundaries and retry logic. Without proper error throwing, the library appeared to work but silently broke integrations.
 
